@@ -8,12 +8,17 @@
 		<link rel="stylesheet" href="style.css" />
 	</head>
 	<body>
-		<main class="container">
-			<button class="new-contact">➕ Add Contact</button>
-			<section class="contacts-container">
-				<input class="search-box" placeholder="Search for a contact" />
-				<ul class="contacts-list">
-					<li class="list-item">
+		<main class="phonebook-container">
+			<section class="phonebook-header">
+				<input
+					class="phonebook-search"
+					placeholder="Search for a contact"
+				/>
+				<button class="phonebook-new">➕ Add Contact</button>
+			</section>
+			<section class="phonebook-list">
+				<ul>
+					<!-- <li class="list-item">
 						<span class="list-image">
 							<img height="200" src="./avatar2.png" />
 						</span>
@@ -25,30 +30,28 @@
 							<span class="edit-item">✏️</span>
 							<span class="delete-item">❌</span>
 						</span>
-					</li>
-					<li class="list-item">
-						<span class="list-image">
-							<img height="200" src="./avatar2.png" />
-						</span>
-						<span class="list-info">
-							<p class="list-name">Blama Doe</p>
-							<span class="list-email"> blama.doe@gmail.com</span>
-						</span>
-						<span class="list-actions">
-							<span class="edit-item">✏️</span>
-							<span class="delete-item">❌</span>
-						</span>
-					</li>
+					</li> -->
 				</ul>
 			</section>
-			<section class="form-container hidden">
+			<section class="phonebook-form hidden">
 				<input
+					class="form-image"
 					type="file"
-					accept="image/png, image/jpg, image/gif, image/jpeg"
+					accept=".png, .jpg, .jpeg"
 				/>
-				<input type="text" required placeholder="Blama Doe" />
-				<input required type="email" placeholder="john@example.com" />
-				<button type="button">Create Contact</button>
+				<input
+					class="form-name"
+					type="text"
+					required
+					placeholder="Blama Doe"
+				/>
+				<input
+					class="form-email"
+					required
+					type="email"
+					placeholder="john@example.com"
+				/>
+				<button type="button" class="form-save">Create Contact</button>
 			</section>
 		</main>
 		<script src="./app.js"></script>

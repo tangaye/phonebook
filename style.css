@@ -19,10 +19,10 @@ body {
 	background-color: var(--app-bg-color);
 }
 
-.container {
+.phonebook-container {
 	border: 2px solid red;
 	background-color: var(--card-bg-color-white);
-	width: 92%;
+	width: 95%;
 	margin: 0 auto;
 	display: flex;
 	flex-direction: column;
@@ -34,41 +34,43 @@ body {
 	margin-bottom: 10%;
 }
 
-.container .new-contact {
+.phonebook-container .phonebook-header {
+	display: flex;
+	margin: 10px 0;
+}
+
+.phonebook-header .phonebook-new {
 	background-color: var(--color-light-gray);
 	padding: 5px;
-	width: 10em;
 	border: 1px solid #d1d5db;
 	border-radius: 5px;
 	cursor: pointer;
-	margin-left: auto;
+}
+
+.phonebook-header .phonebook-search {
+	padding: 5px;
+	border: 1px solid #d1d5db;
+	border-radius: 5px;
+	flex-grow: 1;
+	background-color: var(--color-light-gray);
 }
 
 /* List styles */
-.contacts-container {
+.phonebook-list {
 	display: flex;
 	flex-direction: column;
 	margin-top: 20px;
 }
 
-.contacts-container.hidden {
+.phonebook-list.hidden {
 	display: none;
 }
 
-.contacts-container .search-box {
-	padding: 10px;
-	border: 1px solid #d1d5db;
-	border-radius: 5px;
-	margin-top: 15px;
-	margin-bottom: 20px;
-	background-color: var(--color-light-gray);
-}
-
-.contacts-container .contacts-list {
+.phonebook-list ul {
 	list-style: none;
 }
 
-.contacts-list .list-item {
+.phonebook-list .list-item {
 	padding: 5px 0;
 	border-bottom: 1px solid #dcdcdc;
 	display: flex;
@@ -107,17 +109,17 @@ body {
 }
 
 /* Form Styles */
-.form-container {
+.phonebook-form {
 	display: flex;
 	flex-direction: column;
 	margin-top: 20px;
 }
 
-.form-container.hidden {
+.phonebook-form.hidden {
 	display: none;
 }
 
-.form-container input {
+.phonebook-form input {
 	padding: 10px;
 	border: 1px solid #d1d5db;
 	border-radius: 5px;
@@ -125,11 +127,11 @@ body {
 	background-color: var(--color-light-gray);
 }
 
-.form-container input:first-child {
+.phonebook-form input:first-child {
 	cursor: pointer;
 }
 
-.form-container button {
+.phonebook-form button {
 	background-color: var(--app-bg-color);
 	padding: 10px;
 	border: 1px solid #d1d5db;
@@ -139,3 +141,9 @@ body {
 	font-size: 1em;
 	margin-top: 5px;
 }
+
+/* @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) {
+	.phonebook-container {
+		width: 50%;
+	}
+} */
