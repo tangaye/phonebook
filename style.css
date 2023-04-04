@@ -34,10 +34,21 @@ body {
 	margin-bottom: 10%;
 }
 
+.container .new-contact {
+	background-color: var(--color-light-gray);
+	padding: 5px;
+	width: 10em;
+	border: 1px solid #d1d5db;
+	border-radius: 5px;
+	cursor: pointer;
+	margin-left: auto;
+}
+
 /* List styles */
 .contacts-container {
 	display: flex;
 	flex-direction: column;
+	margin-top: 20px;
 }
 
 .contacts-container.hidden {
@@ -51,17 +62,6 @@ body {
 	margin-top: 15px;
 	margin-bottom: 20px;
 	background-color: var(--color-light-gray);
-}
-
-.contacts-container .create-contact {
-	background-color: var(--color-light-gray);
-	padding: 5px;
-	width: 10em;
-	border: 1px solid #d1d5db;
-	border-radius: 5px;
-	/* font-size: 1.2em; */
-	cursor: pointer;
-	margin-left: auto;
 }
 
 .contacts-container .contacts-list {
@@ -110,6 +110,7 @@ body {
 .form-container {
 	display: flex;
 	flex-direction: column;
+	margin-top: 20px;
 }
 
 .form-container.hidden {
@@ -135,6 +136,6 @@ body {
 	border-radius: 5px;
 	cursor: pointer;
 	color: var(--card-bg-color-white);
-	font-size: 1.2em;
+	font-size: 1em;
 	margin-top: 5px;
 }
