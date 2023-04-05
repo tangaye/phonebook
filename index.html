@@ -14,7 +14,7 @@
 					class="phonebook-search"
 					placeholder="Search for a contact"
 				/>
-				<button class="phonebook-new">➕ Add Contact</button>
+				<button class="phonebook-new">➕</button>
 			</section>
 			<section class="phonebook-list">
 				<ul>
@@ -23,8 +23,11 @@
 							<img height="200" src="./avatar2.png" />
 						</span>
 						<span class="list-info">
-							<p class="list-name">Blama Doe</p>
-							<span class="list-email"> blama.doe@gmail.com</span>
+							<p class="list-name">${this.contacts[i].name}</p>
+							<span class="list-numbers"
+								>${this.contacts[i].orangeNumber} /
+								${this.contacts[i].lonestarNumber}</span
+							>
 						</span>
 						<span class="list-actions">
 							<span class="edit-item">✏️</span>
@@ -34,24 +37,37 @@
 				</ul>
 			</section>
 			<section class="phonebook-form hidden">
+				<label>Photo</label>
 				<input
-					class="form-image"
+					class="phonebook-photo"
 					type="file"
 					accept=".png, .jpg, .jpeg"
 				/>
+				<div class="phonebook-photo--preview"></div>
+				<label>Name</label>
 				<input
-					class="form-name"
+					class="phonebook-name"
 					type="text"
 					required
 					placeholder="Blama Doe"
 				/>
+				<label>Orange Number</label>
 				<input
-					class="form-email"
+					class="phonebook-number--orange"
 					required
-					type="email"
-					placeholder="john@example.com"
+					type="text"
+					placeholder="0770909090"
 				/>
-				<button type="button" class="form-save">Create Contact</button>
+				<label>Lonestar Number</label>
+				<input
+					class="phonebook-number--lonestar"
+					required
+					type="text"
+					placeholder="0880909090"
+				/>
+				<button type="button" class="phonebook-save">
+					Create Contact
+				</button>
 			</section>
 		</main>
 		<script src="./app.js"></script>
