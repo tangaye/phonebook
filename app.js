@@ -4,6 +4,7 @@ const phonebook = {
 	formEl: document.querySelector(".phonebook-form"),
 	nameEl: document.querySelector(".phonebook-name"),
 	photoEl: document.querySelector(".phonebook-photo"),
+	searchEl: document.querySelector(".phonebook-search"),
 	photoPreviewEl: document.querySelector(".phonebook-photo--preview"),
 	orangeNumberEl: document.querySelector(".phonebook-number--orange"),
 	lonestarNumberEl: document.querySelector(".phonebook-number--lonestar"),
@@ -34,26 +35,14 @@ const phonebook = {
 		},
 	],
 
-	all: function () {
-		return this.contacts.map((contact) => {
-			return {
-				id: contact.id,
-				name: contact.name,
-				photo: contact.photo,
-				numbers: `${contact.orangeNumber}/${contact.lonestarNumber}`,
-				email: contact.email,
-				dob: contact.dob,
-				details: contact.details,
-				address: contact.address,
-			};
-		});
-	},
-
 	remove: function (id) {
-		for (let i = 0; i < this.contacts.length; i++) {
-			if (this.contacts[i].id === id) {
-				this.contacts.splice(i, 1);
-				this.render();
+		const contacts = this.contacts;
+
+		for (let i = 0; i < contacts.length; i++) {
+			if (contacts[i].id === id) {
+				contacts.splice(i, 1);
+
+				this.render(contacts);
 				return;
 			}
 		}
@@ -76,19 +65,21 @@ const phonebook = {
 			name: name,
 			orangeNumber: orange,
 			lonestarNumber: lonestar,
+			address: "",
+			dob: "",
+			details: "",
+			email: "",
 		});
 
-		this.render();
+		this.render(this.contacts);
 
 		this.toggleForm();
 
 		this.clearForm();
 	},
 
-	render: function () {
+	render: function (contacts) {
 		this.listEl.innerHTML = "";
-
-		const contacts = this.all();
 
 		for (let i = 0; i < contacts.length; i++) {
 			const contact = contacts[i];
@@ -104,7 +95,7 @@ const phonebook = {
 					</span>
 					<span class="list-info">
 						<p class="list-name">${contact.name}</p>
-						<span class="list-numbers">${contact.numbers}</span>
+						<span class="list-numbers">${contact.orangeNumber}/${contact.lonestarNumber}</span>
 					</span>
 					<span class="list-actions">
 						<span class="edit-item">✏️</span>
@@ -156,9 +147,28 @@ const phonebook = {
 		}
 	},
 
+	search() {
+		const value = this.searchEl.value.toLowerCase();
+		const contacts = this.contacts.filter((contact) => {
+			const found =
+				contact.name.toLowerCase().includes(value) ||
+				contact.email.toLowerCase().includes(value) ||
+				contact.orangeNumber.includes(value) ||
+				contact.lonestarNumber.includes(value) ||
+				contact.email.toLowerCase().includes(value);
+
+			if (found) return found;
+		});
+
+		this.render(contacts);
+	},
+
+	handleKeyUpEvent: function (event) {
+		this.search();
+	},
+
 	handleChangeEvent: function () {
 		const files = this.photoEl.files;
-
 		if (files.length === 0) return;
 
 		const photo = URL.createObjectURL(files[0]);
@@ -171,10 +181,16 @@ const phonebook = {
 	registerListeners: function () {
 		document.addEventListener("click", this.handleClickEvent.bind(this));
 		document.addEventListener("change", this.handleChangeEvent.bind(this));
+		this.searchEl.addEventListener(
+			"keyup",
+			this.handleKeyUpEvent.bind(this)
+		);
 	},
 
 	init: function () {
-		this.render();
+		const contacts = this.contacts;
+
+		this.render(contacts);
 		this.registerListeners();
 	},
 };
