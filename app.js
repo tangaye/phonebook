@@ -11,18 +11,53 @@ const phonebook = {
 
 	contacts: [
 		{
+			id: 1,
+			name: "Prosper Bowman",
 			photo: "",
-			name: "Mary Doe",
-			orangeNumber: "0778909090",
-			lonestarNumber: "0886787990",
+			orangeNumber: "0775676778",
+			lonestarNumber: "0886767780",
+			email: "prosper@gmail.com",
+			dob: "03/02/2003",
+			details: "lorem ldsakfdsfdsafdsfkdsfdsaflkkafaf",
+			address: "Barnersville",
 		},
 		{
+			id: 2,
+			name: "Sam Morris",
 			photo: "",
-			name: "Konah Doe",
-			orangeNumber: "0778909090",
-			lonestarNumber: "0886787990",
+			orangeNumber: "0775676998",
+			lonestarNumber: "0886766880",
+			email: "sam@gmail.com",
+			dob: "03/02/2003",
+			details: "lorem ldsakfdsfdsafdsfkdsfdsaflkkafaf",
+			address: "Du-port road",
 		},
 	],
+
+	all: function () {
+		return this.contacts.map((contact) => {
+			return {
+				id: contact.id,
+				name: contact.name,
+				photo: contact.photo,
+				numbers: `${contact.orangeNumber}/${contact.lonestarNumber}`,
+				email: contact.email,
+				dob: contact.dob,
+				details: contact.details,
+				address: contact.address,
+			};
+		});
+	},
+
+	remove: function (id) {
+		for (let i = 0; i < this.contacts.length; i++) {
+			if (this.contacts[i].id === id) {
+				this.contacts.splice(i, 1);
+				this.render();
+				return;
+			}
+		}
+	},
 
 	store: function () {
 		const name = this.nameEl.value;
@@ -36,6 +71,7 @@ const phonebook = {
 		if (invalid) return;
 
 		this.contacts.push({
+			id: this.contacts.length + 1,
 			photo: photo,
 			name: name,
 			orangeNumber: orange,
@@ -52,21 +88,23 @@ const phonebook = {
 	render: function () {
 		this.listEl.innerHTML = "";
 
-		for (let i = 0; i < this.contacts.length; i++) {
-			const contact = this.contacts[i];
+		const contacts = this.all();
+
+		for (let i = 0; i < contacts.length; i++) {
+			const contact = contacts[i];
 			const imageSrc =
 				contact.photo.length > 0 ? contact.photo : "./avatar2.png";
 
 			this.listEl.insertAdjacentHTML(
 				"beforeend",
 				`
-				<li class="list-item">
+				<li class="list-item" data-id="${contact.id}">
 					<span class="list-image">
 						<img height="200" src="${imageSrc}" />
 					</span>
 					<span class="list-info">
 						<p class="list-name">${contact.name}</p>
-						<span class="list-numbers">${contact.orangeNumber} / ${contact.lonestarNumber}</span>
+						<span class="list-numbers">${contact.numbers}</span>
 					</span>
 					<span class="list-actions">
 						<span class="edit-item">✏️</span>
@@ -111,9 +149,14 @@ const phonebook = {
 		}
 
 		if (classes.includes("phonebook-save")) this.store();
+
+		if (classes.includes("delete-item")) {
+			const id = Number(target.closest(".list-item").dataset.id);
+			this.remove(id);
+		}
 	},
 
-	handleChangeEvent: function (event) {
+	handleChangeEvent: function () {
 		const files = this.photoEl.files;
 
 		if (files.length === 0) return;
@@ -125,14 +168,14 @@ const phonebook = {
 		this.photoPreviewEl.innerHTML = `<img src="${photo}">`;
 	},
 
-	registerHandlers: function () {
+	registerListeners: function () {
 		document.addEventListener("click", this.handleClickEvent.bind(this));
 		document.addEventListener("change", this.handleChangeEvent.bind(this));
 	},
 
 	init: function () {
 		this.render();
-		this.registerHandlers();
+		this.registerListeners();
 	},
 };
 
