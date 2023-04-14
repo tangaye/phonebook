@@ -11,28 +11,36 @@ const phonebook = {
 	photoPreviewEl: document.querySelector(".phonebook-photo--preview"),
 	orangeNumberEl: document.querySelector(".phonebook-number--orange"),
 	lonestarNumberEl: document.querySelector(".phonebook-number--lonestar"),
+	views: {
+		current: "list-contacts",
+		list: "list-contacts",
+		create: "create-contact",
+		info: "view-contact",
+		edit: "edit-contact",
+	},
+
 	photoSrc: "",
 
 	contacts: [
 		{
 			id: 1,
-			name: "Prosper Bowman",
+			name: "Blama Doe",
 			photo: "",
 			orangeNumber: "0775676778",
 			lonestarNumber: "0886767780",
-			email: "prosper@gmail.com",
-			dob: "03/02/2003",
+			email: "blama@gmail.com",
+			dob: "01/02/1993",
 			details:
 				"Lorem ipsum dolor sit amet consectetur adipisicing elit.Est nobis cumque inventore accusantium iste ab optio, obcaecati delectus doloremque totam non, illum assumenda esse voluptates facilis eius perferendis eligendi omnis.",
 			address: "Barnersville",
 		},
 		{
 			id: 2,
-			name: "Sam Morris",
+			name: "Konah Doe",
 			photo: "",
 			orangeNumber: "0775676998",
 			lonestarNumber: "0886766880",
-			email: "sam@gmail.com",
+			email: "konah@gmail.com",
 			dob: "03/02/2003",
 			details:
 				"Lorem ipsum dolor sit amet consectetur adipisicing elit. Est nobis cumque inventore accusantium iste ab optio, obcaecati delectus doloremque totam non, illum assumenda esse voluptates facilis eius perferendis eligendi omnis.",
@@ -175,6 +183,10 @@ const phonebook = {
 		}
 	},
 
+	setView: function (view) {
+		this.views.current = view;
+	},
+
 	valid: function (contact) {
 		const phoneNumbersValid =
 			contact.orangeNumber.length > 0 || contact.lonestar.length > 0;
@@ -187,10 +199,24 @@ const phonebook = {
 		return src.length > 0 ? src : "./avatar2.png";
 	},
 
-	goBack: function () {},
+	goBack: function () {
+		switch (this.views.current) {
+			case this.views.info:
+				this.toggleInfo();
+				this.toggleBackBtn();
+				this.toggleList();
+				this.toggleHeader();
+				this.setView(this.views.list);
+				break;
+			case this.views.create:
+				this.toggleForm();
+				this.setView(this.views.list);
+				break;
+		}
+	},
 
 	toggleList: function () {
-		this.listEl.classList.add("hidden");
+		this.listEl.classList.toggle("hidden");
 	},
 	toggleBackBtn: function () {
 		this.phonebookBackEl.classList.toggle("hidden");
@@ -207,9 +233,9 @@ const phonebook = {
 	toggleForm: function () {
 		this.toggleList();
 		this.toggleBackBtn();
-		this.formEl.classList.toggle("hidden");
+		this.toggleHeader();
 
-		this.toggleTitle();
+		this.formEl.classList.toggle("hidden");
 
 		this.clearForm();
 	},
@@ -222,19 +248,13 @@ const phonebook = {
 		this.photoEl.value = "";
 	},
 
-	toggleTitle: function () {
-		this.formEl.classList.contains("hidden")
-			? (this.newEl.innerHTML = "➕")
-			: (this.newEl.innerHTML = "✖️");
-	},
-
 	handleClickEvent: function (event) {
 		const target = event.target;
 		const classList = Array.from(target.classList);
 
 		if (classList.includes("phonebook-new")) {
 			this.toggleForm();
-			this.toggleTitle();
+			this.setView(this.views.create);
 		}
 
 		if (classList.includes("phonebook-save")) this.store();
@@ -245,6 +265,7 @@ const phonebook = {
 		) {
 			const id = Number(target.closest(".list-item").dataset.id);
 			this.renderOne(id);
+			this.setView(this.views.info);
 		}
 
 		if (classList.includes("delete-item")) {
