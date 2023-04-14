@@ -61,6 +61,7 @@ const phonebook = {
 	},
 
 	get: function (id) {
+		console.log(this.contacts);
 		return this.contacts.find((contact) => contact.id === id);
 	},
 
@@ -293,6 +294,8 @@ const phonebook = {
 				address: "Barnersville",
 			},
 		];
+
+		this.contacts = contacts;
 
 		this.renderAll(contacts);
 		this.registerListeners();
