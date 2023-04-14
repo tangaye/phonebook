@@ -24,15 +24,11 @@ const phonebook = {
 	contacts: [],
 
 	remove: function (id) {
-		const contacts = this.contacts;
+		const index = this.contacts.findIndex((contact) => contact.id === id);
 
-		for (let i = 0; i < contacts.length; i++) {
-			if (contacts[i].id === id) {
-				contacts.splice(i, 1);
-
-				this.renderAll(contacts);
-				return;
-			}
+		if (index >= 0) {
+			this.contacts.splice(index, 1);
+			this.renderAll(this.contacts);
 		}
 	},
 
@@ -61,7 +57,6 @@ const phonebook = {
 	},
 
 	get: function (id) {
-		console.log(this.contacts);
 		return this.contacts.find((contact) => contact.id === id);
 	},
 
