@@ -9,6 +9,7 @@
 	</head>
 	<body>
 		<main class="phonebook-container">
+			<span class="phonebook-back hidden">&larr;</span>
 			<section class="phonebook-header">
 				<input
 					class="phonebook-search"
@@ -16,25 +17,58 @@
 				/>
 				<button class="phonebook-new">➕</button>
 			</section>
-			<section>
-				<ul class="phonebook-list">
-					<!-- <li class="list-item">
-						<span class="list-image">
-							<img height="200" src="./avatar2.png" />
-						</span>
-						<span class="list-info">
-							<p class="list-name">${this.contacts[i].name}</p>
-							<span class="list-numbers"
-								>${this.contacts[i].orangeNumber} /
-								${this.contacts[i].lonestarNumber}</span
-							>
-						</span>
-						<span class="list-actions">
-							<span class="edit-item">✏️</span>
-							<span class="delete-item">❌</span>
-						</span>
-					</li> -->
-				</ul>
+			<ul class="phonebook-list">
+				<!-- <li class="list-item">
+					<span class="list-image">
+						<img height="200" src="./avatar2.png" />
+					</span>
+					<span class="list-info">
+						<p class="list-name">${this.contacts[i].name}</p>
+						<span class="list-numbers"
+							>${this.contacts[i].orangeNumber} /
+							${this.contacts[i].lonestarNumber}</span
+						>
+					</span>
+					<span class="list-actions">
+						<span class="delete-item">❌</span>
+					</span>
+				</li> -->
+			</ul>
+			<section class="phonebook-info hidden">
+				<!-- <div class="info-row row-bio">
+					<img class="info-img" height="200" src="./avatar2.png" />
+					<p class="info-name">Blama Doe</p>
+					<p class="info-email">blama@example.com</p>
+				</div>
+
+				<div class="info-row row-orange">
+					<p>Orange Number</p>
+					<span>0778909098</span>
+				</div>
+				<div class="info-row row-lonestar">
+					<p>Lonestar Number</p>
+					<span>0778909098</span>
+				</div>
+				<div class="info-row row-address">
+					<p>Address</p>
+					<span
+						>Lorem ipsum dolor sit, amet consectetur adipisicing
+						elit.
+					</span>
+				</div>
+
+				<div class="info-row row-details">
+					<p>Details</p>
+					<span>
+						Lorem ipsum dolor sit amet consectetur adipisicing elit.
+						Est nobis cumque inventore accusantium iste ab optio,
+						obcaecati delectus doloremque totam non, illum assumenda
+						esse voluptates facilis eius perferendis eligendi omnis.
+					</span>
+				</div>
+				<div class="info-row row-address">
+					<button class="phonebook-btn--large">Update</button>
+				</div> -->
 			</section>
 			<section class="phonebook-form hidden">
 				<label>Photo</label>
@@ -65,7 +99,10 @@
 					type="text"
 					placeholder="0880909090"
 				/>
-				<button type="button" class="phonebook-save">
+				<button
+					type="button"
+					class="phonebook-save phonebook-btn--large"
+				>
 					Create Contact
 				</button>
 			</section>
