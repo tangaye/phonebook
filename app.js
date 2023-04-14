@@ -21,32 +21,7 @@ const phonebook = {
 
 	photoSrc: "",
 
-	contacts: [
-		{
-			id: 1,
-			name: "Blama Doe",
-			photo: "",
-			orangeNumber: "0775676778",
-			lonestarNumber: "0886767780",
-			email: "blama@gmail.com",
-			dob: "01/02/1993",
-			details:
-				"Lorem ipsum dolor sit amet consectetur adipisicing elit.Est nobis cumque inventore accusantium iste ab optio, obcaecati delectus doloremque totam non, illum assumenda esse voluptates facilis eius perferendis eligendi omnis.",
-			address: "Barnersville",
-		},
-		{
-			id: 2,
-			name: "Konah Doe",
-			photo: "",
-			orangeNumber: "0775676998",
-			lonestarNumber: "0886766880",
-			email: "konah@gmail.com",
-			dob: "03/02/2003",
-			details:
-				"Lorem ipsum dolor sit amet consectetur adipisicing elit. Est nobis cumque inventore accusantium iste ab optio, obcaecati delectus doloremque totam non, illum assumenda esse voluptates facilis eius perferendis eligendi omnis.",
-			address: "Du-port road",
-		},
-	],
+	contacts: [],
 
 	remove: function (id) {
 		const contacts = this.contacts;
@@ -63,7 +38,7 @@ const phonebook = {
 
 	store: function () {
 		const contact = {
-			id: this.contacts.length + 1,
+			id: this.generateId(),
 			name: this.nameEl.value,
 			orange: this.orangeNumberEl.value,
 			lonestar: this.lonestarNumberEl.value,
@@ -87,6 +62,10 @@ const phonebook = {
 
 	get: function (id) {
 		return this.contacts.find((contact) => contact.id === id);
+	},
+
+	generateId: function () {
+		return Date.now();
 	},
 
 	search() {
@@ -120,9 +99,7 @@ const phonebook = {
 					</span>
 					<span class="list-info">
 						<p class="list-name">${contact.name}</p>
-						<span class="list-numbers">${contact.orangeNumber}/${
-					contact.lonestarNumber
-				}</span>
+						<span class="list-numbers">${contact.orange}/${contact.lonestar}</span>
 					</span>
 					<span class="list-actions">
 						<span class="delete-item">❌</span>
@@ -150,15 +127,15 @@ const phonebook = {
 				</div>
 
 				<div class="info-row row-orange">
-					<p>Orange Number</p>
+					<p>Orange</p>
 					<span>${contact.orangeNumber}</span>
 				</div>
 				<div class="info-row row-lonestar">
-					<p>Lonestar Number</p>
+					<p>Lonestar</p>
 					<span>${contact.lonestarNumber}</span>
 				</div>
 				<div class="info-row row-dob">
-					<p>Date of Birth</p>
+					<p>Dob</p>
 					<span
 						> ${contact.dob}
 					</span>
@@ -188,11 +165,11 @@ const phonebook = {
 	},
 
 	valid: function (contact) {
-		const phoneNumbersValid =
-			contact.orangeNumber.length > 0 || contact.lonestar.length > 0;
+		const numbersValid =
+			contact.orange.length > 0 || contact.lonestar.length > 0;
 		const nameValid = contact.name.length > 0;
 
-		return phoneNumbersValid && nameValid;
+		return numbersValid && nameValid;
 	},
 
 	getImageSrc: function (src) {
@@ -301,7 +278,21 @@ const phonebook = {
 	},
 
 	init: function () {
-		const contacts = this.contacts;
+		const id = this.generateId();
+		const contacts = [
+			{
+				id: id,
+				name: "Blama Doe",
+				photo: "",
+				orange: "0775002002",
+				lonestar: "0886767780",
+				email: "blama@example.com",
+				dob: "01/02/1993",
+				details:
+					"Lorem ipsum dolor sit amet consectetur adipisicing elit.Est nobis cumque inventore accusantium iste ab optio, obcaecati delectus doloremque totam non, illum assumenda esse voluptates facilis eius perferendis eligendi omnis.",
+				address: "Barnersville",
+			},
+		];
 
 		this.renderAll(contacts);
 		this.registerListeners();
