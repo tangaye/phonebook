@@ -54,33 +54,27 @@ const phonebook = {
 	},
 
 	store: function () {
-		const name = this.nameEl.value;
-		const orange = this.orangeNumberEl.value;
-		const lonestar = this.lonestarNumberEl.value;
-		const photo = this.photoSrc;
-
-		const invalid =
-			name.length <= 0 || orange.length <= 0 || lonestar.length <= 0;
-
-		if (invalid) return;
-
-		this.contacts.push({
+		const contact = {
 			id: this.contacts.length + 1,
-			photo: photo,
-			name: name,
-			orangeNumber: orange,
-			lonestarNumber: lonestar,
+			name: this.nameEl.value,
+			orange: this.orangeNumberEl.value,
+			lonestar: this.lonestarNumberEl.value,
+			photo: this.photoSrc,
 			address: "",
 			dob: "",
 			details: "",
 			email: "",
-		});
+		};
 
-		this.renderAll(this.contacts);
+		if (this.valid(contact)) {
+			this.contacts.push(contact);
 
-		this.toggleForm();
+			this.renderAll(this.contacts);
 
-		this.clearForm();
+			this.toggleForm();
+
+			this.clearForm();
+		}
 	},
 
 	get: function (id) {
@@ -181,6 +175,14 @@ const phonebook = {
 		}
 	},
 
+	valid: function (contact) {
+		const phoneNumbersValid =
+			contact.orangeNumber.length > 0 || contact.lonestar.length > 0;
+		const nameValid = contact.name.length > 0;
+
+		return phoneNumbersValid && nameValid;
+	},
+
 	getImageSrc: function (src) {
 		return src.length > 0 ? src : "./avatar2.png";
 	},
@@ -253,7 +255,7 @@ const phonebook = {
 		if (classList.includes("phonebook-back")) this.goBack();
 	},
 
-	handleKeyUpEvent: function (event) {
+	handleKeyUpEvent: function () {
 		this.search();
 	},
 
