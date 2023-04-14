@@ -75,8 +75,8 @@ const phonebook = {
 			const found =
 				contact.name.toLowerCase().includes(value) ||
 				contact.email.toLowerCase().includes(value) ||
-				contact.orangeNumber.includes(value) ||
-				contact.lonestarNumber.includes(value) ||
+				contact.orange.includes(value) ||
+				contact.lonestar.includes(value) ||
 				contact.email.toLowerCase().includes(value);
 
 			if (found) return found;
