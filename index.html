@@ -82,28 +82,43 @@
 				<input
 					class="phonebook-name"
 					type="text"
-					required
 					placeholder="Blama Doe"
 				/>
-				<label>Orange Number</label>
+				<label>Orange</label>
 				<input
 					class="phonebook-number--orange"
-					required
 					type="text"
+					minlength="10"
+					maxlength="10"
 					placeholder="0770909090"
 				/>
-				<label>Lonestar Number</label>
+				<label>Lonestar</label>
 				<input
 					class="phonebook-number--lonestar"
-					required
 					type="text"
+					minlength="10"
+					maxlength="10"
 					placeholder="0880909090"
+				/>
+				<label>Email</label>
+				<input
+					class="phonebook-email"
+					type="email"
+					placeholder="blama@example.com"
+				/>
+				<label>Dob</label>
+				<input class="phonebook-dob" type="date" />
+				<label>Address</label>
+				<input
+					class="phonebook-address"
+					type="email"
+					placeholder="blama@example.com"
 				/>
 				<button
 					type="button"
 					class="phonebook-save phonebook-btn--large"
 				>
-					Create Contact
+					Save
 				</button>
 			</section>
 		</main>

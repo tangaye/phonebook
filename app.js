@@ -128,11 +128,11 @@ const phonebook = {
 
 				<div class="info-row row-orange">
 					<p>Orange</p>
-					<span>${contact.orangeNumber}</span>
+					<span>${contact.orange}</span>
 				</div>
 				<div class="info-row row-lonestar">
 					<p>Lonestar</p>
-					<span>${contact.lonestarNumber}</span>
+					<span>${contact.lonestar}</span>
 				</div>
 				<div class="info-row row-dob">
 					<p>Dob</p>
