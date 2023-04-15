@@ -134,7 +134,7 @@ body {
 	margin-top: 20px;
 }
 
-.phonebook-form input {
+.phonebook-form .form-input {
 	padding: 10px;
 	border: 1px solid #d1d5db;
 	border-radius: 5px;

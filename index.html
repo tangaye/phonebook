@@ -73,52 +73,63 @@
 			<section class="phonebook-form hidden">
 				<label>Photo</label>
 				<input
-					class="phonebook-photo"
+					class="form-input phonebook-photo"
 					type="file"
 					accept=".png, .jpg, .jpeg"
 				/>
 				<div class="phonebook-photo--preview"></div>
 				<label>Name</label>
 				<input
-					class="phonebook-name"
+					class="form-input phonebook-name"
 					type="text"
 					placeholder="Blama Doe"
 				/>
 				<label>Orange</label>
 				<input
-					class="phonebook-number--orange"
-					type="text"
+					class="form-input phonebook-number--orange"
+					type="tel"
 					minlength="10"
 					maxlength="10"
 					placeholder="0770909090"
 				/>
 				<label>Lonestar</label>
 				<input
-					class="phonebook-number--lonestar"
-					type="text"
+					class="form-input phonebook-number--lonestar"
+					type="tel"
 					minlength="10"
 					maxlength="10"
 					placeholder="0880909090"
 				/>
 				<label>Email</label>
 				<input
-					class="phonebook-email"
+					class="form-input phonebook-email"
 					type="email"
 					placeholder="blama@example.com"
 				/>
 				<label>Dob</label>
-				<input class="phonebook-dob" type="date" />
+				<input class="form-input phonebook-dob" type="date" />
 				<label>Address</label>
 				<input
-					class="phonebook-address"
-					type="email"
-					placeholder="blama@example.com"
+					class="form-input phonebook-address"
+					type="text"
+					placeholder="12th Street"
 				/>
+				<label>Details</label>
+				<textarea
+					class="form-input phonebook-details"
+					placeholder="Contact details"
+				></textarea>
 				<button
 					type="button"
 					class="phonebook-save phonebook-btn--large"
 				>
 					Save
+				</button>
+				<button
+					type="button"
+					class="phonebook-update hidden phonebook-btn--large"
+				>
+					Update
 				</button>
 			</section>
 		</main>
